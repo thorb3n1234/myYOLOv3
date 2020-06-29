@@ -76,14 +76,15 @@ for epoch in range(opt.epochs):
     for batch_i, (_, imgs, targets) in enumerate(dataloader):
         imgs = Variable(imgs.type(Tensor))
         targets = Variable(targets.type(Tensor), requires_grad=False)
-
+        print("1")
         optimizer.zero_grad()
-
+        print("2")
         loss = model(imgs, targets)
-
+        print("3")
         loss.backward()
+        print("4")
         optimizer.step()
-
+        print("5")
         print(
             "[Epoch %d/%d, Batch %d/%d] [Losses: x %f, y %f, w %f, h %f, conf %f, cls %f, total %f, recall: %.5f, precision: %.5f]"
             % (
