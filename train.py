@@ -62,10 +62,10 @@ if cuda:
     model = model.cuda()
 
 model.train()
-
+nw = min([os.cpu_count(), batch_size if batch_size > 1 else 0, 8]) 
 # Get dataloader
 dataloader = torch.utils.data.DataLoader(
-    ListDataset(train_path), batch_size=opt.batch_size, shuffle=False, num_workers=opt.n_cpu
+    ListDataset(train_path), batch_size=opt.batch_size, shuffle=False, num_workers=nw
 )
 
 Tensor = torch.cuda.FloatTensor if cuda else torch.FloatTensor
